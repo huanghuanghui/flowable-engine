@@ -31,7 +31,7 @@ public class BeansConfigurationHelper {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
         xmlBeanDefinitionReader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_XSD);
-        xmlBeanDefinitionReader.loadBeanDefinitions(springResource);
+        xmlBeanDefinitionReader.loadBeanDefinitions(springResource);//加载flowable.cfg.xmlm的bean definition
         AbstractEngineConfiguration engineConfiguration = (AbstractEngineConfiguration) beanFactory.getBean(beanName);
         engineConfiguration.setBeans(new SpringBeanFactoryProxyMap(beanFactory));
         return engineConfiguration;

@@ -1,107 +1,107 @@
-create table ACT_HI_PROCINST (
-    ID_ varchar(64) not null,
-    REV_ integer default 1,
-    PROC_INST_ID_ varchar(64) not null,
-    BUSINESS_KEY_ varchar(255),
-    PROC_DEF_ID_ varchar(64) not null,
-    START_TIME_ datetime(3) not null,
-    END_TIME_ datetime(3),
-    DURATION_ bigint,
-    START_USER_ID_ varchar(255),
-    START_ACT_ID_ varchar(255),
-    END_ACT_ID_ varchar(255),
-    SUPER_PROCESS_INSTANCE_ID_ varchar(64),
-    DELETE_REASON_ varchar(4000),
-    TENANT_ID_ varchar(255) default '',
-    NAME_ varchar(255),
-    CALLBACK_ID_ varchar(255),
-    CALLBACK_TYPE_ varchar(255),
-    primary key (ID_),
-    unique (PROC_INST_ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_hi_procinst (
+    id_ varchar(64) not null,
+    rev_ integer default 1,
+    proc_inst_id_ varchar(64) not null,
+    business_key_ varchar(255),
+    proc_def_id_ varchar(64) not null,
+    start_time_ datetime(3) not null,
+    end_time_ datetime(3),
+    duration_ bigint,
+    start_user_id_ varchar(255),
+    start_act_id_ varchar(255),
+    end_act_id_ varchar(255),
+    super_process_instance_id_ varchar(64),
+    delete_reason_ varchar(4000),
+    tenant_id_ varchar(255) default '',
+    name_ varchar(255),
+    callback_id_ varchar(255),
+    callback_type_ varchar(255),
+    primary key (id_),
+    unique (proc_inst_id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
-create table ACT_HI_ACTINST (
-    ID_ varchar(64) not null,
-    REV_ integer default 1,
-    PROC_DEF_ID_ varchar(64) not null,
-    PROC_INST_ID_ varchar(64) not null,
-    EXECUTION_ID_ varchar(64) not null,
-    ACT_ID_ varchar(255) not null,
-    TASK_ID_ varchar(64),
-    CALL_PROC_INST_ID_ varchar(64),
-    ACT_NAME_ varchar(255),
-    ACT_TYPE_ varchar(255) not null,
-    ASSIGNEE_ varchar(255),
-    START_TIME_ datetime(3) not null,
-    END_TIME_ datetime(3),
-    DURATION_ bigint,
-    DELETE_REASON_ varchar(4000),
-    TENANT_ID_ varchar(255) default '',
-    primary key (ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_hi_actinst (
+    id_ varchar(64) not null,
+    rev_ integer default 1,
+    proc_def_id_ varchar(64) not null,
+    proc_inst_id_ varchar(64) not null,
+    execution_id_ varchar(64) not null,
+    act_id_ varchar(255) not null,
+    task_id_ varchar(64),
+    call_proc_inst_id_ varchar(64),
+    act_name_ varchar(255),
+    act_type_ varchar(255) not null,
+    assignee_ varchar(255),
+    start_time_ datetime(3) not null,
+    end_time_ datetime(3),
+    duration_ bigint,
+    delete_reason_ varchar(4000),
+    tenant_id_ varchar(255) default '',
+    primary key (id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
-create table ACT_HI_DETAIL (
-    ID_ varchar(64) not null,
-    TYPE_ varchar(255) not null,
-    PROC_INST_ID_ varchar(64),
-    EXECUTION_ID_ varchar(64),
-    TASK_ID_ varchar(64),
-    ACT_INST_ID_ varchar(64),
-    NAME_ varchar(255) not null,
-    VAR_TYPE_ varchar(255),
-    REV_ integer,
-    TIME_ datetime(3) not null,
-    BYTEARRAY_ID_ varchar(64),
-    DOUBLE_ double,
-    LONG_ bigint,
-    TEXT_ varchar(4000),
-    TEXT2_ varchar(4000),
-    primary key (ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_hi_detail (
+    id_ varchar(64) not null,
+    type_ varchar(255) not null,
+    proc_inst_id_ varchar(64),
+    execution_id_ varchar(64),
+    task_id_ varchar(64),
+    act_inst_id_ varchar(64),
+    name_ varchar(255) not null,
+    var_type_ varchar(255),
+    rev_ integer,
+    time_ datetime(3) not null,
+    bytearray_id_ varchar(64),
+    double_ double,
+    long_ bigint,
+    text_ varchar(4000),
+    text2_ varchar(4000),
+    primary key (id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
-create table ACT_HI_COMMENT (
-    ID_ varchar(64) not null,
-    TYPE_ varchar(255),
-    TIME_ datetime(3) not null,
-    USER_ID_ varchar(255),
-    TASK_ID_ varchar(64),
-    PROC_INST_ID_ varchar(64),
-    ACTION_ varchar(255),
-    MESSAGE_ varchar(4000),
-    FULL_MSG_ LONGBLOB,
-    primary key (ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_hi_comment (
+    id_ varchar(64) not null,
+    type_ varchar(255),
+    time_ datetime(3) not null,
+    user_id_ varchar(255),
+    task_id_ varchar(64),
+    proc_inst_id_ varchar(64),
+    action_ varchar(255),
+    message_ varchar(4000),
+    full_msg_ longblob,
+    primary key (id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
-create table ACT_HI_ATTACHMENT (
-    ID_ varchar(64) not null,
-    REV_ integer,
-    USER_ID_ varchar(255),
-    NAME_ varchar(255),
-    DESCRIPTION_ varchar(4000),
-    TYPE_ varchar(255),
-    TASK_ID_ varchar(64),
-    PROC_INST_ID_ varchar(64),
-    URL_ varchar(4000),
-    CONTENT_ID_ varchar(64),
-    TIME_ datetime(3),
-    primary key (ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_hi_attachment (
+    id_ varchar(64) not null,
+    rev_ integer,
+    user_id_ varchar(255),
+    name_ varchar(255),
+    description_ varchar(4000),
+    type_ varchar(255),
+    task_id_ varchar(64),
+    proc_inst_id_ varchar(64),
+    url_ varchar(4000),
+    content_id_ varchar(64),
+    time_ datetime(3),
+    primary key (id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
 
-create index ACT_IDX_HI_PRO_INST_END on ACT_HI_PROCINST(END_TIME_);
-create index ACT_IDX_HI_PRO_I_BUSKEY on ACT_HI_PROCINST(BUSINESS_KEY_);
-create index ACT_IDX_HI_ACT_INST_START on ACT_HI_ACTINST(START_TIME_);
-create index ACT_IDX_HI_ACT_INST_END on ACT_HI_ACTINST(END_TIME_);
-create index ACT_IDX_HI_DETAIL_PROC_INST on ACT_HI_DETAIL(PROC_INST_ID_);
-create index ACT_IDX_HI_DETAIL_ACT_INST on ACT_HI_DETAIL(ACT_INST_ID_);
-create index ACT_IDX_HI_DETAIL_TIME on ACT_HI_DETAIL(TIME_);
-create index ACT_IDX_HI_DETAIL_NAME on ACT_HI_DETAIL(NAME_);
-create index ACT_IDX_HI_DETAIL_TASK_ID on ACT_HI_DETAIL(TASK_ID_);
-create index ACT_IDX_HI_PROCVAR_PROC_INST on ACT_HI_VARINST(PROC_INST_ID_);
-create index ACT_IDX_HI_PROCVAR_TASK_ID on ACT_HI_VARINST(TASK_ID_);
-create index ACT_IDX_HI_PROCVAR_EXE on ACT_HI_VARINST(EXECUTION_ID_);
-create index ACT_IDX_HI_ACT_INST_PROCINST on ACT_HI_ACTINST(PROC_INST_ID_, ACT_ID_);
-create index ACT_IDX_HI_ACT_INST_EXEC on ACT_HI_ACTINST(EXECUTION_ID_, ACT_ID_);
-create index ACT_IDX_HI_IDENT_LNK_TASK on ACT_HI_IDENTITYLINK(TASK_ID_);
-create index ACT_IDX_HI_IDENT_LNK_PROCINST on ACT_HI_IDENTITYLINK(PROC_INST_ID_);
-create index ACT_IDX_HI_TASK_INST_PROCINST on ACT_HI_TASKINST(PROC_INST_ID_);
+create index act_idx_hi_pro_inst_end on act_hi_procinst(end_time_);
+create index act_idx_hi_pro_i_buskey on act_hi_procinst(business_key_);
+create index act_idx_hi_act_inst_start on act_hi_actinst(start_time_);
+create index act_idx_hi_act_inst_end on act_hi_actinst(end_time_);
+create index act_idx_hi_detail_proc_inst on act_hi_detail(proc_inst_id_);
+create index act_idx_hi_detail_act_inst on act_hi_detail(act_inst_id_);
+create index act_idx_hi_detail_time on act_hi_detail(time_);
+create index act_idx_hi_detail_name on act_hi_detail(name_);
+create index act_idx_hi_detail_task_id on act_hi_detail(task_id_);
+create index act_idx_hi_procvar_proc_inst on act_hi_varinst(proc_inst_id_);
+create index act_idx_hi_procvar_task_id on act_hi_varinst(task_id_);
+create index act_idx_hi_procvar_exe on act_hi_varinst(execution_id_);
+create index act_idx_hi_act_inst_procinst on act_hi_actinst(proc_inst_id_, act_id_);
+create index act_idx_hi_act_inst_exec on act_hi_actinst(execution_id_, act_id_);
+create index act_idx_hi_ident_lnk_task on act_hi_identitylink(task_id_);
+create index act_idx_hi_ident_lnk_procinst on act_hi_identitylink(proc_inst_id_);
+create index act_idx_hi_task_inst_procinst on act_hi_taskinst(proc_inst_id_);

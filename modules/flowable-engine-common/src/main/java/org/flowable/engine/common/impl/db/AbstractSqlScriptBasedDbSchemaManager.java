@@ -221,7 +221,7 @@ public abstract class AbstractSqlScriptBasedDbSchemaManager implements DbSchemaM
     public void executeSchemaResource(String operation, String component, String resourceName, boolean isOptional) {
         InputStream inputStream = null;
         try {
-            inputStream = ReflectUtil.getResourceAsStream(resourceName);
+            inputStream = ReflectUtil.getResourceAsStream(resourceName);//org/flowable/common/db/create/flowable.mysql.create.common.sql
             if (inputStream == null) {
                 if (!isOptional) {
                     throw new FlowableException("resource '" + resourceName + "' is not available");

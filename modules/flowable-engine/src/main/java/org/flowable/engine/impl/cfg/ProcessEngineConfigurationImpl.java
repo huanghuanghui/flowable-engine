@@ -34,6 +34,7 @@ import javax.xml.namespace.QName;
 
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
@@ -820,15 +821,15 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     public void init() {
         initConfigurators();
         configuratorsBeforeInit();
-        initProcessDiagramGenerator();
-        initHistoryLevel();
+        initProcessDiagramGenerator();//flowable新增DiagramGenerator
+        initHistoryLevel();//historyLevel = HistoryLevel.getHistoryLevelForKey(getHistory())="AUDIT" ;初始化historyLevel
         initFunctionDelegates();
         initDelegateInterceptor();
         initExpressionManager();
         initAgendaFactory();
-
+//默认使用关系型数据库，会初始化数据源
         if (usingRelationalDatabase) {
-            initDataSource();
+            initDataSource();//生成 dataSource属性=new PooledDataSource()
             initDbSchemaManagers();
         }
 
@@ -842,13 +843,13 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
         initBusinessCalendarManager();
         initCommandContextFactory();
         initTransactionContextFactory();
-        initCommandExecutors();
-        initServices();
-        initIdGenerator();
+        initCommandExecutors();//重要 初始化了commandInvoker，初始化CommandInterceptors责任链，在执行后续的 command操作的时候，会走这些责任链设置
+        initServices();//设置service的commandExecutor，从上一步生成的commandExecutor
+        initIdGenerator();//生成设置DbIdGenerator
         initWsdlImporterFactory();
-        initBehaviorFactory();
+        initBehaviorFactory();//生成activityBehaviorFactory = DefaultActivityBehaviorFactory
         initListenerFactory();
-        initBpmnParser();
+        initBpmnParser();//初始化bpmnParser = new BpmnParser();
         initProcessDefinitionCache();
         initProcessDefinitionInfoCache();
         initAppResourceCache();
@@ -859,17 +860,19 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
         initTransactionFactory();
 
         if (usingRelationalDatabase) {
+            //初始化mybatis configuration配置，加载org/flowable/db/mapping/mappings.xml下的mapper，设置DefaultSqlSessionFactory，使用原生mybatis
+            //sqlSessionFactory = new DefaultSqlSessionFactory(configuration)；configuration为mybatis的所有配置
             initSqlSessionFactory();
         }
 
         initSessionFactories();
         initDataManagers();
-        initEntityManagers();
+        initEntityManagers();//重要，设置manager，就是mapperDao
         initCandidateManager();
         initHistoryManager();
         initDynamicStateManager();
         initJpa();
-        initDeployers();
+        initDeployers();//设置bpmnDeployer = new BpmnDeployer();
         initEventHandlers();
         initFailedJobCommandFactory();
         initEventDispatcher();
@@ -883,7 +886,7 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
         initJobServiceConfiguration();
         initAsyncExecutor();
         initAsyncHistoryExecutor();
-        configuratorsAfterInit();
+        configuratorsAfterInit();//初始化IdmEngineConfigurator，创建idm相关的9张表，.IdmDbSchemaManager
         afterInitTaskServiceConfiguration();
     }
 
@@ -1414,7 +1417,7 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     public void configuratorsAfterInit() {
         for (EngineConfigurator configurator : allConfigurators) {
             LOGGER.info("Executing configure() of {} (priority:{})", configurator.getClass(), configurator.getPriority());
-            configurator.configure(this);
+            configurator.configure(this);//IdmEngineConfigurator
         }
     }
 

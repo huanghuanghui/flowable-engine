@@ -1,24 +1,24 @@
-create table ACT_HI_VARINST (
-    ID_ varchar(64) not null,
-    REV_ integer default 1,
-    PROC_INST_ID_ varchar(64),
-    EXECUTION_ID_ varchar(64),
-    TASK_ID_ varchar(64),
-    NAME_ varchar(255) not null,
-    VAR_TYPE_ varchar(100),
-    SCOPE_ID_ varchar(255),
-    SUB_SCOPE_ID_ varchar(255),
-    SCOPE_TYPE_ varchar(255),
-    BYTEARRAY_ID_ varchar(64),
-    DOUBLE_ double,
-    LONG_ bigint,
-    TEXT_ varchar(4000),
-    TEXT2_ varchar(4000),
-    CREATE_TIME_ datetime(3),
-    LAST_UPDATED_TIME_ datetime(3),
-    primary key (ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_hi_varinst (
+    id_ varchar(64) not null,
+    rev_ integer default 1,
+    proc_inst_id_ varchar(64),
+    execution_id_ varchar(64),
+    task_id_ varchar(64),
+    name_ varchar(255) not null,
+    var_type_ varchar(100),
+    scope_id_ varchar(255),
+    sub_scope_id_ varchar(255),
+    scope_type_ varchar(255),
+    bytearray_id_ varchar(64),
+    double_ double,
+    long_ bigint,
+    text_ varchar(4000),
+    text2_ varchar(4000),
+    create_time_ datetime(3),
+    last_updated_time_ datetime(3),
+    primary key (id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
-create index ACT_IDX_HI_PROCVAR_NAME_TYPE on ACT_HI_VARINST(NAME_, VAR_TYPE_);
-create index ACT_IDX_HI_VAR_SCOPE_ID_TYPE on ACT_HI_VARINST(SCOPE_ID_, SCOPE_TYPE_);
-create index ACT_IDX_HI_VAR_SUB_ID_TYPE on ACT_HI_VARINST(SUB_SCOPE_ID_, SCOPE_TYPE_);
+create index act_idx_hi_procvar_name_type on act_hi_varinst(name_, var_type_);
+create index act_idx_hi_var_scope_id_type on act_hi_varinst(scope_id_, scope_type_);
+create index act_idx_hi_var_sub_id_type on act_hi_varinst(sub_scope_id_, scope_type_);

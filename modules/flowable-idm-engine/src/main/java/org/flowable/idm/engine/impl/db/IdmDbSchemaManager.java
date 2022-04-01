@@ -36,7 +36,7 @@ public class IdmDbSchemaManager extends ServiceSqlScriptBasedDbSchemaManager {
    
    @Override
    protected String getResourcesRootDirectory() {
-       return "org/flowable/idm/db/";
+       return "org/flowable/idm/db/";//9张ID相关表
    }
    
    @Override

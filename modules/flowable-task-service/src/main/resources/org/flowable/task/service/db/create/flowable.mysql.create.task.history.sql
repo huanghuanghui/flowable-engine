@@ -1,34 +1,34 @@
-create table ACT_HI_TASKINST (
-    ID_ varchar(64) not null,
-    REV_ integer default 1,
-    PROC_DEF_ID_ varchar(64),
-    TASK_DEF_ID_ varchar(64),
-    TASK_DEF_KEY_ varchar(255),
-    PROC_INST_ID_ varchar(64),
-    EXECUTION_ID_ varchar(64),
-    SCOPE_ID_ varchar(255),
-    SUB_SCOPE_ID_ varchar(255),
-    SCOPE_TYPE_ varchar(255),
-    SCOPE_DEFINITION_ID_ varchar(255),
-    NAME_ varchar(255),
-    PARENT_TASK_ID_ varchar(64),
-    DESCRIPTION_ varchar(4000),
-    OWNER_ varchar(255),
-    ASSIGNEE_ varchar(255),
-    START_TIME_ datetime(3) not null,
-    CLAIM_TIME_ datetime(3),
-    END_TIME_ datetime(3),
-    DURATION_ bigint,
-    DELETE_REASON_ varchar(4000),
-    PRIORITY_ integer,
-    DUE_DATE_ datetime(3),
-    FORM_KEY_ varchar(255),
-    CATEGORY_ varchar(255),
-    TENANT_ID_ varchar(255) default '',
-    LAST_UPDATED_TIME_ datetime(3),
-    primary key (ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_hi_taskinst (
+    id_ varchar(64) not null,
+    rev_ integer default 1,
+    proc_def_id_ varchar(64),
+    task_def_id_ varchar(64),
+    task_def_key_ varchar(255),
+    proc_inst_id_ varchar(64),
+    execution_id_ varchar(64),
+    scope_id_ varchar(255),
+    sub_scope_id_ varchar(255),
+    scope_type_ varchar(255),
+    scope_definition_id_ varchar(255),
+    name_ varchar(255),
+    parent_task_id_ varchar(64),
+    description_ varchar(4000),
+    owner_ varchar(255),
+    assignee_ varchar(255),
+    start_time_ datetime(3) not null,
+    claim_time_ datetime(3),
+    end_time_ datetime(3),
+    duration_ bigint,
+    delete_reason_ varchar(4000),
+    priority_ integer,
+    due_date_ datetime(3),
+    form_key_ varchar(255),
+    category_ varchar(255),
+    tenant_id_ varchar(255) default '',
+    last_updated_time_ datetime(3),
+    primary key (id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
-create index ACT_IDX_HI_TASK_SCOPE on ACT_HI_TASKINST(SCOPE_ID_, SCOPE_TYPE_);
-create index ACT_IDX_HI_TASK_SUB_SCOPE on ACT_HI_TASKINST(SUB_SCOPE_ID_, SCOPE_TYPE_);
-create index ACT_IDX_HI_TASK_SCOPE_DEF on ACT_HI_TASKINST(SCOPE_DEFINITION_ID_, SCOPE_TYPE_);
+create index act_idx_hi_task_scope on act_hi_taskinst(scope_id_, scope_type_);
+create index act_idx_hi_task_sub_scope on act_hi_taskinst(sub_scope_id_, scope_type_);
+create index act_idx_hi_task_scope_def on act_hi_taskinst(scope_definition_id_, scope_type_);

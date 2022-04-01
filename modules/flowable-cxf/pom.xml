@@ -193,9 +193,9 @@
         <activation>
             <jdk>[9,)</jdk>
         </activation>
-        <properties>
-            <argLine>--add-modules java.xml.ws</argLine>
-        </properties>
+<!--        <properties>-->
+<!--            <argLine>&#45;&#45;add-modules java.xml.ws</argLine>-->
+<!--        </properties>-->
     </profile>
   </profiles>
 

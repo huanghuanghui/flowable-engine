@@ -497,7 +497,7 @@ public abstract class AbstractEngineConfiguration {
 
     public void initCommandExecutor() {
         if (commandExecutor == null) {
-            CommandInterceptor first = initInterceptorChain(commandInterceptors);
+            CommandInterceptor first = initInterceptorChain(commandInterceptors);//组成责任链执行流程 LogInterceptor() TransactionInterceptor CommandContextInterceptor TransactionContextInterceptor CommandInvoker
             commandExecutor = new CommandExecutorImpl(getDefaultCommandConfig(), first);
         }
     }
@@ -617,7 +617,7 @@ public abstract class AbstractEngineConfiguration {
                 properties.put("boolValue", "TRUE");
 
                 if (databaseType != null) {
-                    properties.load(getResourceAsStream(pathToEngineDbProperties()));
+                    properties.load(getResourceAsStream(pathToEngineDbProperties()));//limitAfter=LIMIT #{maxResults} OFFSET #{firstResult}
                 }
 
                 Configuration configuration = initMybatisConfiguration(environment, reader, properties);

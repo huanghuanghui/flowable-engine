@@ -952,6 +952,13 @@
         <module>modules/flowable-job-service</module>
         <module>modules/flowable-job-spring-service</module>
 		<module>modules/flowable-engine</module>
+		<module>modules/hhh</module>
+		<module>modules/flowable-ui-admin</module>
+		<module>modules/flowable-ui-common</module>
+		<module>modules/flowable-ui-edge</module>
+		<module>modules/flowable-ui-idm</module>
+		<module>modules/flowable-ui-modeler</module>
+		<module>modules/flowable-ui-task</module>
 	</modules>
 
 	<build>
@@ -1574,9 +1581,9 @@
             <activation>
                 <jdk>[9,)</jdk>
             </activation>
-            <properties>
-                <argLine>--add-modules java.xml.bind</argLine>
-            </properties>
+<!--            <properties>-->
+<!--                <argLine>&#45;&#45;add-modules java.xml.bind</argLine>-->
+<!--            </properties>-->
         </profile>
 	</profiles>
 

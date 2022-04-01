@@ -75,7 +75,7 @@ public abstract class ServiceSqlScriptBasedDbSchemaManager extends AbstractSqlSc
             int matchingVersionIndex = FlowableVersions.getFlowableVersionIndexForDbVersion(compareWithVersion);
             boolean isUpgradeNeeded = (matchingVersionIndex != (FlowableVersions.FLOWABLE_VERSIONS.size() - 1));
             if (isUpgradeNeeded) {
-                dbSchemaUpgrade(schemaComponent, matchingVersionIndex);
+                dbSchemaUpgrade(schemaComponent, matchingVersionIndex);//更新表
                 if (isHistoryUsed()) {
                     dbSchemaUpgrade(schemaComponentHistory, matchingVersionIndex);
                 }
@@ -83,7 +83,7 @@ public abstract class ServiceSqlScriptBasedDbSchemaManager extends AbstractSqlSc
             
             feedback = "upgraded from " + compareWithVersion + " to " + FlowableVersions.CURRENT_VERSION;
         } else {
-            dbSchemaCreate();
+            dbSchemaCreate();//创建表
         }
         return feedback;
     }

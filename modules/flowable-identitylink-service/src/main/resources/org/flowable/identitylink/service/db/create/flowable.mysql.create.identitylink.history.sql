@@ -1,17 +1,17 @@
-create table ACT_HI_IDENTITYLINK (
-    ID_ varchar(64),
-    GROUP_ID_ varchar(255),
-    TYPE_ varchar(255),
-    USER_ID_ varchar(255),
-    TASK_ID_ varchar(64),
-    CREATE_TIME_ datetime(3),
-    PROC_INST_ID_ varchar(64),
-    SCOPE_ID_ varchar(255),
-    SCOPE_TYPE_ varchar(255),
-    SCOPE_DEFINITION_ID_ varchar(255),
-    primary key (ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_hi_identitylink (
+    id_ varchar(64),
+    group_id_ varchar(255),
+    type_ varchar(255),
+    user_id_ varchar(255),
+    task_id_ varchar(64),
+    create_time_ datetime(3),
+    proc_inst_id_ varchar(64),
+    scope_id_ varchar(255),
+    scope_type_ varchar(255),
+    scope_definition_id_ varchar(255),
+    primary key (id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
-create index ACT_IDX_HI_IDENT_LNK_USER on ACT_HI_IDENTITYLINK(USER_ID_);
-create index ACT_IDX_HI_IDENT_LNK_SCOPE on ACT_HI_IDENTITYLINK(SCOPE_ID_, SCOPE_TYPE_);
-create index ACT_IDX_HI_IDENT_LNK_SCOPE_DEF on ACT_HI_IDENTITYLINK(SCOPE_DEFINITION_ID_, SCOPE_TYPE_);
+create index act_idx_hi_ident_lnk_user on act_hi_identitylink(user_id_);
+create index act_idx_hi_ident_lnk_scope on act_hi_identitylink(scope_id_, scope_type_);
+create index act_idx_hi_ident_lnk_scope_def on act_hi_identitylink(scope_definition_id_, scope_type_);

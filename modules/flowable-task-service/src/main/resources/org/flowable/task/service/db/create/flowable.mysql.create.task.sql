@@ -1,39 +1,39 @@
-create table ACT_RU_TASK (
-    ID_ varchar(64),
-    REV_ integer,
-    EXECUTION_ID_ varchar(64),
-    PROC_INST_ID_ varchar(64),
-    PROC_DEF_ID_ varchar(64),
-    TASK_DEF_ID_ varchar(64),
-    SCOPE_ID_ varchar(255),
-    SUB_SCOPE_ID_ varchar(255),
-    SCOPE_TYPE_ varchar(255),
-    SCOPE_DEFINITION_ID_ varchar(255),
-    NAME_ varchar(255),
-    PARENT_TASK_ID_ varchar(64),
-    DESCRIPTION_ varchar(4000),
-    TASK_DEF_KEY_ varchar(255),
-    OWNER_ varchar(255),
-    ASSIGNEE_ varchar(255),
-    DELEGATION_ varchar(64),
-    PRIORITY_ integer,
-    CREATE_TIME_ timestamp(3) NULL,
-    DUE_DATE_ datetime(3),
-    CATEGORY_ varchar(255),
-    SUSPENSION_STATE_ integer,
-    TENANT_ID_ varchar(255) default '',
-    FORM_KEY_ varchar(255),
-    CLAIM_TIME_ datetime(3),
-    IS_COUNT_ENABLED_ TINYINT,
-    VAR_COUNT_ integer,
-    ID_LINK_COUNT_ integer,
-    SUB_TASK_COUNT_ integer,
-    primary key (ID_)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin;
+create table act_ru_task (
+    id_ varchar(64),
+    rev_ integer,
+    execution_id_ varchar(64),
+    proc_inst_id_ varchar(64),
+    proc_def_id_ varchar(64),
+    task_def_id_ varchar(64),
+    scope_id_ varchar(255),
+    sub_scope_id_ varchar(255),
+    scope_type_ varchar(255),
+    scope_definition_id_ varchar(255),
+    name_ varchar(255),
+    parent_task_id_ varchar(64),
+    description_ varchar(4000),
+    task_def_key_ varchar(255),
+    owner_ varchar(255),
+    assignee_ varchar(255),
+    delegation_ varchar(64),
+    priority_ integer,
+    create_time_ timestamp(3) null,
+    due_date_ datetime(3),
+    category_ varchar(255),
+    suspension_state_ integer,
+    tenant_id_ varchar(255) default '',
+    form_key_ varchar(255),
+    claim_time_ datetime(3),
+    is_count_enabled_ tinyint,
+    var_count_ integer,
+    id_link_count_ integer,
+    sub_task_count_ integer,
+    primary key (id_)
+) engine=innodb default charset=utf8 collate utf8_bin;
 
-create index ACT_IDX_TASK_CREATE on ACT_RU_TASK(CREATE_TIME_);
-create index ACT_IDX_TASK_SCOPE on ACT_RU_TASK(SCOPE_ID_, SCOPE_TYPE_);
-create index ACT_IDX_TASK_SUB_SCOPE on ACT_RU_TASK(SUB_SCOPE_ID_, SCOPE_TYPE_);
-create index ACT_IDX_TASK_SCOPE_DEF on ACT_RU_TASK(SCOPE_DEFINITION_ID_, SCOPE_TYPE_);
+create index act_idx_task_create on act_ru_task(create_time_);
+create index act_idx_task_scope on act_ru_task(scope_id_, scope_type_);
+create index act_idx_task_sub_scope on act_ru_task(sub_scope_id_, scope_type_);
+create index act_idx_task_scope_def on act_ru_task(scope_definition_id_, scope_type_);
 
-insert into ACT_GE_PROPERTY values ('task.schema.version', '6.3.0.1', 1);
+insert into act_ge_property values ('task.schema.version', '6.3.0.1', 1);

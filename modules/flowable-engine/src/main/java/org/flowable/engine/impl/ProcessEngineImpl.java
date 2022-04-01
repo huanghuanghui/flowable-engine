@@ -73,7 +73,14 @@ public class ProcessEngineImpl implements ProcessEngine {
         this.commandExecutor = processEngineConfiguration.getCommandExecutor();
         this.sessionFactories = processEngineConfiguration.getSessionFactories();
         this.transactionContextFactory = processEngineConfiguration.getTransactionContextFactory();
-
+        //针对databaseSchemaUpdate配置，进行表的创建（默认使用关系型数据库，默认databaseSchemaUpdate=false）
+        /**
+         * 数据库策略
+         * flase: 默认值。activiti在启动时，会对比数据库表中保存的版本，如果没有表或者版本不匹配，将抛出异常。(生产环境常用)
+         * true: activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建。(开发时常用)
+         * create_drop: 在activiti启动时创建表，在关闭时删除表(必须手动关闭引擎，才能删除表)。(单元测试常用)
+         * drop-create: 在activiti启动时删除原来的旧表，然后在创建新表(不需要手动关闭引擎)。
+         */
         if (processEngineConfiguration.isUsingRelationalDatabase() && processEngineConfiguration.getDatabaseSchemaUpdate() != null) {
             commandExecutor.execute(processEngineConfiguration.getSchemaCommandConfig(), new SchemaOperationsProcessEngineBuild());
         }

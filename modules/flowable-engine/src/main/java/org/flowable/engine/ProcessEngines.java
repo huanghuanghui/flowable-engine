@@ -178,8 +178,9 @@ public abstract class ProcessEngines {
         InputStream inputStream = null;
         try {
             inputStream = resource.openStream();
+            //创建ProcessEngineConfiguration对象，拉起DefaultListableBeanFactory并存入
             ProcessEngineConfiguration processEngineConfiguration = ProcessEngineConfiguration.createProcessEngineConfigurationFromInputStream(inputStream);
-            return processEngineConfiguration.buildProcessEngine();
+            return processEngineConfiguration.buildProcessEngine();//init ProcessEngineConfiguration对象
 
         } catch (IOException e) {
             throw new FlowableIllegalArgumentException("couldn't open resource stream: " + e.getMessage(), e);
